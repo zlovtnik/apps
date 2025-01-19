@@ -51,6 +51,12 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<!-- P0c7e -->
+		<dependency>
+			<groupId>org.wasmer</groupId>
+			<artifactId>wasmer-java</artifactId>
+			<version>0.3.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -58,6 +64,32 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<!-- Pd2e1 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>3.2.0</version>
+				<executions>
+					<execution>
+						<id>copy-resources</id>
+						<phase>validate</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.build.directory}/webassembly</outputDirectory>
+							<resources>
+								<resource>
+									<directory>src/main/webassembly</directory>
+									<includes>
+										<include>**/*.wasm</include>
+									</includes>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
